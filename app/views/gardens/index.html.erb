@@ -1,0 +1,12 @@
+<h1>The gardens</h1>
+
+<% @gardens.each do |garden| %>
+<li><%= link_to garden.name,  garden_path(garden)%></li>
+<% end %>
+
+<br>
+<br>
+
+<%= link_to 'New garden',  new_garden_path%>
+
+

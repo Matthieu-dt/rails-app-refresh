@@ -1,0 +1,13 @@
+<h1><%= @garden.name %></h1>
+<p><%= @garden.address %></p>
+<br>
+<br>
+<%= link_to 'Edit', edit_garden_path(@garden) %>
+<br>
+<br>
+<%= link_to 'Delete', garden_path(@garden), method: :delete, data: { confirm: 'Are you sure ?' }%>
+<br>
+<br>
+<%= link_to 'Back to index', gardens_path %>
+
+
