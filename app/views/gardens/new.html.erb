@@ -1,6 +1,7 @@
 <%= simple_form_for [ @garden ] do |f| %>
   <%= f.input :name, placeholder:"Garden's name"%>
   <%= f.input :address, placeholder: "Garden's address"%>
+  <%= f.input :stars, placeholder: "Rate the garden"%>
   <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
 <%= link_to 'Back', gardens_path %>

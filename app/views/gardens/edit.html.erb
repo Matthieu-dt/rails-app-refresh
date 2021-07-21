@@ -1,6 +1,7 @@
 <%= simple_form_for [ @garden ] do |f| %>
   <%= f.input :name%>
   <%= f.input :address%>
+  <%= f.input :stars%>
   <%= f.submit "Edit", class: "btn btn-primary" %>
 <% end %>
 <%= link_to 'Back', garden_path(@garden) %>

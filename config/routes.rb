@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to:'pages#home'
 
-  resources :gardens
+  resources :gardens do
+    collection do
+      get :top
+      end
+    end
 
   # #Create a garden
   # get 'gardens/new' to: 'gardens#new'

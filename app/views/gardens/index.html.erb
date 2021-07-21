@@ -1,7 +1,9 @@
 <h1>The gardens</h1>
 
+<p>See top gardens <%= link_to 'here', top_gardens_path%></p>
+
 <% @gardens.each do |garden| %>
-<li><%= link_to garden.name,  garden_path(garden)%></li>
+<li><%= link_to garden.name,  garden_path(garden)%>  <%= garden.stars %> <%= link_to 'Delete', garden_path(garden), method: :delete, data: { confirm: 'Are you sure ?' }%> </li>
 <% end %>
 
 <br>

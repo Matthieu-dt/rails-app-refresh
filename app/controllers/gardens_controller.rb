@@ -62,9 +62,21 @@ class GardensController < ApplicationController
     redirect_to gardens_path
   end
 
+  def top
+    # @top_gardens = []
+    # @gardens = Garden.all
+    # @gardens.each do |garden|
+    #   if garden.stars == 5
+    #     @top_gardens << garden
+    #   end
+    # end
+
+    @top_gardens = Garden.where(stars: 5)
+  end
+
   private
 
   def garden_params
-    params.require(:garden).permit(:name, :address)
+    params.require(:garden).permit(:name, :address, :stars)
   end
 end

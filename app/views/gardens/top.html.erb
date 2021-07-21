@@ -1,0 +1,8 @@
+<h1>Top gardens are</h1>
+
+<% @top_gardens.each do |garden| %>
+<li> <%= link_to garden.name, garden_path(garden)  %> </li>
+<% end %>
+<br>
+<br>
+<%= link_to 'Back to index', gardens_path %>
