@@ -1,12 +1,11 @@
 class ReviewsController < ApplicationController
 
+  before_action :set_garden, only: [:new, :create]
   def new
-    @garden = Garden.find(params[:garden_id])
     @review = Review.new
   end
 
   def create
-    @garden = Garden.find(params[:garden_id])
     @review = Review.new(review_params)
     @review.garden = @garden
     if @review.save
@@ -26,5 +25,9 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:content, :garden_id)
+  end
+
+  def set_garden
+    @garden = Garden.find(params[:garden_id])
   end
 end
