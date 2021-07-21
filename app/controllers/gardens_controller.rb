@@ -1,11 +1,36 @@
+require 'open-uri'
+require 'json'
+require 'http'
+require 'faraday'
+
 class GardensController < ApplicationController
+  include HTTParty
 
   def index
     @gardens = Garden.all
   end
 
   def show
+    ### SUPER HERO API : KEY IN QUERY PARAM ###
+
     @garden = Garden.find(params[:id])
+
+    # url = "https://superheroapi.com/api/#{ENV['SUPER_KEY']}/12"
+    # data_serialized = open(url).read
+    # data = JSON.parse(data_serialized)
+
+    # @super_hero_name = data["name"]
+
+    ### CAT API : KEY IN HEADERS ###
+
+    # response = Faraday.new("https://api.thecatapi.com/v1/breeds/search?q=abyss", headers: { 'x-api-key': "#{ENV['CAT_API']}" }).get
+    # response_serialized = response.body
+    # raise
+
+    #### OPEN-FOOTBALL-DATA API : KEY IN HEADERS ####
+
+    # response = Faraday.new("http://api.football-data.org/v2/teams/78", headers: { 'X-Auth-Token': "#{ENV['FOOT_API']}" }).get
+    # response_serialized = response.body
   end
 
   def new
