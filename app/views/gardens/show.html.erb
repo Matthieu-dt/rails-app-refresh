@@ -1,13 +1,23 @@
-<h1><%= @garden.name %></h1>
-<p><%= @garden.address %></p>
-<br>
-<br>
-<%= link_to 'Edit', edit_garden_path(@garden) %>
-<br>
-<br>
-<%= link_to 'Delete', garden_path(@garden), method: :delete, data: { confirm: 'Are you sure ?' }%>
-<br>
-<br>
-<%= link_to 'Back to index', gardens_path %>
-
-
+<div class="container">
+  <h1><%= @garden.name %></h1>
+  <p><%= @garden.address %></p>
+  <br>
+  <br>
+  <p><%= link_to 'Who is the chef ?', gardener_garden_path(@garden) %></p>
+  <br>
+  <br>
+  <h3>Reviews</h3>
+  <% @garden.reviews.each do |review| %>
+  <li><%= review.content %> - <%= link_to 'Remove', review_path(review), method: :delete, data: { confirm: 'Are you sure ?' } %></li>
+  <% end %>
+  <p><%= link_to 'Add a reviews', new_garden_review_path(@garden) %></p>
+  <br>
+  <br>
+  <%= link_to 'Edit', edit_garden_path(@garden) %>
+  <br>
+  <br>
+  <%= link_to 'Delete', garden_path(@garden), method: :delete, data: { confirm: 'Are you sure ?' }%>
+  <br>
+  <br>
+  <%= link_to 'Back to index', gardens_path %>
+</div>

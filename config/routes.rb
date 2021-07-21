@@ -3,27 +3,17 @@ Rails.application.routes.draw do
 
   resources :gardens do
     collection do
-      get :top
+      get :top  # Get all the gardens rated 5 stars : gardens/top
       end
-    end
 
-  # #Create a garden
-  # get 'gardens/new' to: 'gardens#new'
-  # post 'gardens' to: 'gardens#create'
+    member do
+      get :gardener # Get the gardener of one garden : gardens/:id/gardener
+      end
 
-  # #Get all gardens
-  # get 'gardens' to: 'gardens#index'
+    resources :reviews, only: [:new, :create]
+  end
 
-  # #Get all garden
-  # get 'gardens/:id' to: 'gardens#show'
-
-  # #Update a garden
-  # get 'gardens/:id/edit' to: 'gardens#edit'
-  # patch 'gardens/:id' to: 'gardens#update'
-
-  # #Delete a garden
-
-  # delete 'gardens/:id' to 'gardens#destroy'
+  resources :reviews, only:[:destroy]
 
   # Static pages
 

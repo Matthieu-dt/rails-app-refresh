@@ -5,6 +5,8 @@ require 'faraday'
 
 class GardensController < ApplicationController
   include HTTParty
+  # Method privée
+  before_action :set_garden, only: [:show, :edit, :update, :destroy, :gardener]
 
   def index
     @gardens = Garden.all
@@ -12,8 +14,6 @@ class GardensController < ApplicationController
 
   def show
     ### SUPER HERO API : KEY IN QUERY PARAM ###
-
-    @garden = Garden.find(params[:id])
 
     # url = "https://superheroapi.com/api/#{ENV['SUPER_KEY']}/12"
     # data_serialized = open(url).read
@@ -39,7 +39,7 @@ class GardensController < ApplicationController
 
   def create
     @garden = Garden.new(garden_params)
-    if @garden.save!
+    if @garden.save
       redirect_to garden_path(@garden)
     else
       render :new
@@ -47,36 +47,34 @@ class GardensController < ApplicationController
   end
 
   def edit
-    @garden = Garden.find(params[:id])
   end
 
   def update
-    @garden = Garden.find(params[:id])
     @garden.update(garden_params)
     redirect_to garden_path(@garden)
   end
 
   def destroy
-    @garden = Garden.find(params[:id])
     @garden.destroy
     redirect_to gardens_path
   end
 
   def top
-    # @top_gardens = []
-    # @gardens = Garden.all
-    # @gardens.each do |garden|
-    #   if garden.stars == 5
-    #     @top_gardens << garden
-    #   end
-    # end
-
     @top_gardens = Garden.where(stars: 5)
+  end
+
+  def gardener
+    @gardener_name = @garden.gardener_name
+    @gardener_age = @garden.gardener_age
   end
 
   private
 
+  def set_garden
+    @garden = Garden.find(params[:id])
+  end
+
   def garden_params
-    params.require(:garden).permit(:name, :address, :stars)
+    params.require(:garden).permit(:name, :address, :stars, :gardener_name, :gardener_age)
   end
 end

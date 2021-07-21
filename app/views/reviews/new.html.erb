@@ -1,0 +1,7 @@
+<%= simple_form_for [ @garden, @review ] do |f| %>
+  <%= f.input :content, placeholder:"Tell us what you want"%>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>
+<%= link_to 'Back', gardens_path %>
+
+
